@@ -28,6 +28,7 @@ DWORD g_PhyDriveCount = 0;
 static int g_FilterRemovable = 0;
 int g_FilterUSB = 1;
 int g_ForceOperation = 1;
+int g_WriteImage = 0;
 
 int ParseCmdLineOption(LPSTR lpCmdLine)
 {
@@ -283,6 +284,12 @@ static int FilterPhysicalDrive(PHY_DRIVE_INFO *pDriveList, DWORD DriveCount)
             CurDrive->PartStyle = (MBR.PartTbl[0].FsFlag == 0xEE) ? 1 : 0;
             GetVentoyVerInPhyDrive(CurDrive, Part2StartSector, CurDrive->VentoyVersion, sizeof(CurDrive->VentoyVersion), &(CurDrive->SecureBootSupport));
             Log("PhyDrive %d is Ventoy Disk ver:%s SecureBoot:%u", CurDrive->PhyDrive, CurDrive->VentoyVersion, CurDrive->SecureBootSupport);
+
+            if (CurDrive->VentoyVersion[0] == 0)
+            {
+                CurDrive->VentoyVersion[0] = '?';
+                Log("Unknown Ventoy Version");
+            }
         }
     }
 

@@ -106,11 +106,13 @@ cp $OPT VentoyWebDeepin.sh $tmpdir/
 cp $OPT README $tmpdir/
 cp $OPT plugin $tmpdir/
 cp $OPT CreatePersistentImg.sh $tmpdir/
+cp $OPT ExtendPersistentImg.sh $tmpdir/
 dos2unix -q $tmpdir/Ventoy2Disk.sh
 dos2unix -q $tmpdir/VentoyWeb.sh
 dos2unix -q $tmpdir/VentoyWebDeepin.sh
 #dos2unix -q $tmpdir/Ventoy.desktop
 dos2unix -q $tmpdir/CreatePersistentImg.sh
+dos2unix -q $tmpdir/ExtendPersistentImg.sh
 
 cp $OPT ../LinuxGUI/WebUI $tmpdir/
 sed 's/.*SCRIPT_DEL_THIS \(.*\)/\1/g' -i $tmpdir/WebUI/index.html
@@ -144,6 +146,7 @@ chmod +x $tmpdir/VentoyWeb.sh
 chmod +x $tmpdir/VentoyWebDeepin.sh
 #chmod +x $tmpdir/Ventoy.desktop
 chmod +x $tmpdir/CreatePersistentImg.sh
+chmod +x $tmpdir/ExtendPersistentImg.sh
 
 tar -czvf ventoy-${curver}-linux.tar.gz $tmpdir
 
@@ -151,7 +154,7 @@ tar -czvf ventoy-${curver}-linux.tar.gz $tmpdir
 
 rm -f ventoy-${curver}-windows.zip
 cp $OPT Ventoy2Disk*.exe $tmpdir/
-cp $OPT $LANG_DIR/languages.ini $tmpdir/ventoy/
+cp $OPT $LANG_DIR/languages.json $tmpdir/ventoy/
 rm -rf $tmpdir/tool
 rm -f $tmpdir/*.sh
 rm -rf $tmpdir/WebUI
